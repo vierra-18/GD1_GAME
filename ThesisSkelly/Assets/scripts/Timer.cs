@@ -14,25 +14,28 @@ public class Timer : MonoBehaviour
     private bool timerGoing;
 
     public static float elaspedTime;
-    void Start()
+    void Awake()
     {
         instance = this;
     }
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
-        //timerGoing = false;
-        timeCounter.text = "Time: 00:00.0";
-
+        timeCounter.text = "Time: 00:00.00";
+        timerGoing = false;
     }
     public void BeginTimer() 
     {
         timerGoing = true;
-        elaspedTime = 0.0f;
+        elaspedTime = 0f;
         StartCoroutine(UpdateTimer());
     }
-    public void EndTimer() 
+	private void Update()
+	{
+        print(timerGoing);
+	}
+	public void EndTimer() 
     {
         timerGoing= false;
     }
@@ -41,9 +44,9 @@ public class Timer : MonoBehaviour
 	{
         while (timerGoing) 
         {
-            elaspedTime +=Time.deltaTime;
+            elaspedTime += Time.deltaTime;
             timePlaying = TimeSpan.FromSeconds(elaspedTime);
-            string timePlayingStr = "Time: " + timePlaying.ToString("mm':'ss'.ff");
+            string timePlayingStr = "Time: " + timePlaying.ToString("mm':'ss'.'ff");
             timeCounter.text = timePlayingStr;
             yield return null;
         }

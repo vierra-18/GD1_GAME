@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Test Maze_Pathfinding1.unity
+    guid: f4a2e173a2e4c41469a823ae6bd59194
   m_configObjects: {}
