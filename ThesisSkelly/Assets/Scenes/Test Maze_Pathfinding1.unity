@@ -1399,10 +1399,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mazeSpawner: {fileID: 1383588147}
-  displayGridGizmos: 0
+  displayGridGizmos: 1
   unwalkableMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   gridWorldSize: {x: 100, y: 100}
   nodeRadius: 0.5
 --- !u!114 &1372789581
@@ -1462,7 +1462,7 @@ MonoBehaviour:
   FullRandom: 1
   RandomSeed: 12345
   Floor: {fileID: 165842, guid: 8d3b36f175a633f429d7bda54c76550d, type: 3}
-  Wall: {fileID: 4782212660040944259, guid: a19cb9675f2b7ff48b481d22d7932762, type: 3}
+  Wall: {fileID: 144206, guid: 9de82ec743bb24449a99f5cf1e325d61, type: 3}
   Pillar: {fileID: 142476, guid: f3f97a2401feba4479a301d6181e9da6, type: 3}
   Rows: 20
   Columns: 20
