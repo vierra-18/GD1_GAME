@@ -41,3 +41,29 @@ You got 44.11732 time elapsedYou got 150 coins collected
 You got 81.53611 time elapsedYou got 150 coins collected
 
 You got 100.4748 time elapsed
+
+You got 0 coins collected
+
+You got 61.45572 time elapsedYou got 0 coins collected
+
+You got 79.0372 time elapsedYou got 0 coins collected
+
+You got 80.59715 time elapsedYou got 0 coins collected
+
+You got 81.33817 time elapsedYou got 0 coins collected
+
+You got 82.55907 time elapsedYou got 0 coins collected
+
+You got 84.65749 time elapsedYou got 0 coins collected
+
+You got 86.49755 time elapsedYou got 0 coins collected
+
+You got 101.0196 time elapsedYou got 50 coins collected
+
+You got 123.2167 time elapsedYou got 50 coins collected
+
+You got 126.7786 time elapsedYou got 50 coins collected
+
+You got 135.0365 time elapsedYou got 50 coins collected
+
+You got 143.1592 time elapsed
