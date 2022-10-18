@@ -14,6 +14,7 @@ public class Timer : MonoBehaviour
     private bool timerGoing;
 
     public static float elaspedTime;
+    public float TrueTime;
     void Awake()
     {
         instance = this;
@@ -38,9 +39,10 @@ public class Timer : MonoBehaviour
 	public void EndTimer() 
     {
         timerGoing= false;
+        TrueTime = elaspedTime;
     }
 
-	private IEnumerator UpdateTimer()
+	public IEnumerator UpdateTimer()
 	{
         while (timerGoing) 
         {

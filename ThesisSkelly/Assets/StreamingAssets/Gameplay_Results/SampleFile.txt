@@ -1,0 +1,43 @@
+SampleTitle
+
+Max distance 0
+
+
+
+You got 50 coins collected
+
+You got 53.01796 time elapsed
+
+
+
+You got 250 coins collected
+
+You got 35.57994 time elapsedYou got 250 coins collected
+
+You got 40.9788 time elapsed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+You got 50 coins collected
+
+You got 31.11456 time elapsedYou got 100 coins collected
+
+You got 44.11732 time elapsedYou got 150 coins collected
+
+You got 81.53611 time elapsedYou got 150 coins collected
+
+You got 100.4748 time elapsed

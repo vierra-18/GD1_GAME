@@ -9,7 +9,7 @@ public class Pathfinding : MonoBehaviour
 {
 	PathRequestManager requestManager;
 	Grid_ grid;
-
+	public static int n;
 	void Awake()
 	{
 		requestManager = GetComponent<PathRequestManager>();
@@ -126,13 +126,21 @@ public class Pathfinding : MonoBehaviour
         return waypoints.ToArray();
     }
 
-    int GetDistance(Node nodeA, Node nodeB)
+    public static int GetDistance(Node nodeA, Node nodeB)
 	{
 		int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
 		int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
 
 		if (dstX > dstY)
+		{
+			n = 14 * dstY + 10 * (dstX - dstY);
 			return 14 * dstY + 10 * (dstX - dstY);
-		return 14 * dstX + 10 * (dstY - dstX);
+		}
+		else
+		{
+			n = 14 * dstX + 10 * (dstY - dstX);
+			return 14 * dstX + 10 * (dstY - dstX);
+		}
 	}
+	
 }
