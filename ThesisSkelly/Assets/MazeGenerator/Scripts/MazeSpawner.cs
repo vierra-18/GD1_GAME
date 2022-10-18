@@ -69,23 +69,52 @@ public class MazeSpawner : MonoBehaviour {
 				tmp.transform.parent = transform;
 				if (cell.WallRight)
 				{
-					tmp = Instantiate(Wall, new Vector3(x + CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;// right
-					tmp.transform.parent = transform;
+					if (CreateWallBool() == true)
+					{
+						tmp = Instantiate(Wall, new Vector3(x + CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;// right
+						tmp.transform.parent = transform;
+					}
+                    else
+                    {
+						continue;
+                    }
 				}
 				if (cell.WallFront)
 				{
-					tmp = Instantiate(Wall, new Vector3(x, 0, z + CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;// front
-					tmp.transform.parent = transform;
+					if(CreateWallBool() == true)
+                    {
+						tmp = Instantiate(Wall, new Vector3(x, 0, z + CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;// front
+						tmp.transform.parent = transform;
+					}
+                    else
+                    {
+						continue;
+                    }
 				}
 				if (cell.WallLeft)
 				{
-					tmp = Instantiate(Wall, new Vector3(x - CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 270, 0)) as GameObject;// left
-					tmp.transform.parent = transform;
+					if (CreateWallBool() == true)
+					{
+						tmp = Instantiate(Wall, new Vector3(x - CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 270, 0)) as GameObject;// left
+						tmp.transform.parent = transform;
+					}
+					else 
+					{
+						continue ;
+
+					}
 				}
 				if (cell.WallBack)
 				{
-					tmp = Instantiate(Wall, new Vector3(x, 0, z - CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;// back
-					tmp.transform.parent = transform;
+					if (CreateWallBool() == true)
+					{
+						tmp = Instantiate(Wall, new Vector3(x, 0, z - CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;// back
+						tmp.transform.parent = transform;
+					}
+                    else
+                    {
+						continue;
+                    }
 				}
 				if (cell.IsGoal && GoalPrefab != null)
 				{
@@ -107,5 +136,20 @@ public class MazeSpawner : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public bool CreateWallBool()
+    {
+		
+		var n = Random.Range(0, 5);
+
+		if (n == 0)
+        {
+			return false;
+        }
+        else
+        {
+			return true;
+        }
 	}
 }
