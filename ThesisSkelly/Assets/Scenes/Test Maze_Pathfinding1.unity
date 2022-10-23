@@ -1132,8 +1132,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
   gridWorldSize: {x: 120, y: 120}
 =======
+=======
+>>>>>>> parent of 361b618 (New Maze Assets Added)
+=======
+>>>>>>> parent of 361b618 (New Maze Assets Added)
   gridWorldSize: {x: 100, y: 100}
 >>>>>>> parent of 361b618 (New Maze Assets Added)
   nodeRadius: 0.5

@@ -22,6 +22,7 @@ public class OnTriggerSound : MonoBehaviour
         if (other.gameObject.tag.Equals("Player")) 
         {
             mAudioSource.PlayOneShot(Scream);
+
         }
 	}
 

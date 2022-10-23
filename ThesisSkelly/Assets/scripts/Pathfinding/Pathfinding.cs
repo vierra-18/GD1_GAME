@@ -10,16 +10,20 @@ public class Pathfinding : MonoBehaviour
 	PathRequestManager requestManager;
 	Grid_ grid;
 	public static int n;
+
 	void Awake()
 	{
 		requestManager = GetComponent<PathRequestManager>();
 		grid = GetComponent<Grid_>();
+
+
+
 	}
 
 	public void StartFindPath(Vector3 startPos, Vector3 targetPos)
-    {
+	{
 		StartCoroutine(FindPath(startPos, targetPos));
-    }
+	}
 
 	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
 	{
@@ -32,7 +36,7 @@ public class Pathfinding : MonoBehaviour
 
 		// check if positions of start and target nodes are walkable or not
 		if (startNode.walkable && targetNode.walkable)
-        {
+		{
 			Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
 			HashSet<Node> closedSet = new HashSet<Node>();
 			openSet.Add(startNode);
@@ -71,13 +75,13 @@ public class Pathfinding : MonoBehaviour
 				}
 			}
 		}
-		
+
 		yield return null;
 
 		// set path as the waypoints
 		if (pathSuccess)
-        {
-			waypoints= RetracePath(startNode, targetNode);
+		{
+			waypoints = RetracePath(startNode, targetNode);
 			pathSuccess = waypoints.Length > 0;
 		}
 
@@ -102,31 +106,31 @@ public class Pathfinding : MonoBehaviour
 
 	}
 
-    // simplifies the path of nodes so that it only takes waypoints needed to turn
-    Vector3[] SimplifyPath(List<Node> path)
-    {
-        List<Vector3> waypoints = new List<Vector3>();
+	// simplifies the path of nodes so that it only takes waypoints needed to turn
+	Vector3[] SimplifyPath(List<Node> path)
+	{
+		List<Vector3> waypoints = new List<Vector3>();
 
-        // stores direction of last nodes
-        Vector2 directionOld = Vector2.zero;
+		// stores direction of last nodes
+		Vector2 directionOld = Vector2.zero;
 
-        for (int i = 1; i < path.Count; i++)
-        {
-           /* // directions of the nodes in the grid
-            Vector2 directionNew = new Vector2(path[i - 1].gridX - path[i].gridX, path[i - 1].gridY - path[i].gridY);*/
+		for (int i = 1; i < path.Count; i++)
+		{
+			/* // directions of the nodes in the grid
+			 Vector2 directionNew = new Vector2(path[i - 1].gridX - path[i].gridX, path[i - 1].gridY - path[i].gridY);*/
 
-            // add node to list of waypoints to change direction
-           /* if (directionNew != directionOld)
-            {*/
-                waypoints.Add(path[i].worldPosition);
-       /*     }*/
-        /*    directionOld = directionNew;*/
-        }
+			// add node to list of waypoints to change direction
+			/* if (directionNew != directionOld)
+			 {*/
+			waypoints.Add(path[i].worldPosition);
+			/*     }*/
+			/*    directionOld = directionNew;*/
+		}
 
-        return waypoints.ToArray();
-    }
+		return waypoints.ToArray();
+	}
 
-    public static int GetDistance(Node nodeA, Node nodeB)
+	public int GetDistance(Node nodeA, Node nodeB)
 	{
 		int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
 		int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
@@ -135,12 +139,15 @@ public class Pathfinding : MonoBehaviour
 		{
 			n = 14 * dstY + 10 * (dstX - dstY);
 			return 14 * dstY + 10 * (dstX - dstY);
+			
 		}
 		else
 		{
 			n = 14 * dstX + 10 * (dstY - dstX);
 			return 14 * dstX + 10 * (dstY - dstX);
 		}
+
 	}
 	
+
 }

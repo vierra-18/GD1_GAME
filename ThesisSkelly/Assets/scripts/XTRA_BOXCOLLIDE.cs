@@ -12,14 +12,21 @@ public class XTRA_BOXCOLLIDE : MonoBehaviour
     string timeTxt;
     string coinTxt;
     string distanceTxt;
+    string filename;
+
+
 
     // Start is called before the first frame update
+
+    private void OnEnable()
+    {
+        Application.logMessageReceived += Log;
+    }
     void Start()
     {
+
         
-        distance = Pathfinding.n;
-        distanceTxt = "Max distance " + distance;
-        CreateTextFile();
+        
     }
 
     // Update is called once per frame
@@ -41,6 +48,8 @@ public class XTRA_BOXCOLLIDE : MonoBehaviour
             coinTxt = "You got " + coins + " coins collected";
 
             time = Timer.elaspedTime;
+            distanceTxt = "Max distance " + distance;
+            CreateTextFile();
 
             timeTxt = "You got " + time + " time elapsed";
 
@@ -62,5 +71,13 @@ public class XTRA_BOXCOLLIDE : MonoBehaviour
             "\n"+ timeTxt
             );
     }
+    public void Log(string logString, string stackTrace, LogType type)
+    {
+        TextWriter tw = new StreamWriter(filename, true);
+        tw.WriteLine("" + logString);
+        tw.WriteLine("[" + System.DateTime.Now + "]" + logString);
+        tw.Close();
+    }
+
 
 }

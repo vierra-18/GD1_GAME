@@ -14,6 +14,7 @@ public class Node : IHeapItem<Node>
 	public Node parent;
 	int heapIndex;
 
+
 	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY)
 	{
 		walkable = _walkable;
@@ -47,7 +48,7 @@ public class Node : IHeapItem<Node>
 		int compare= fCost.CompareTo(nodeToCompare.fCost);
 		if (compare == 0)
         {
-			compare = hCost.CompareTo(nodeToCompare.hCost);
+			//compare = hCost.CompareTo(nodeToCompare.hCost);
 			
         }
 		return -compare;

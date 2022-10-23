@@ -34,7 +34,7 @@ public class Timer : MonoBehaviour
     }
 	private void Update()
 	{
-        print(timerGoing);
+       
 	}
 	public void EndTimer() 
     {

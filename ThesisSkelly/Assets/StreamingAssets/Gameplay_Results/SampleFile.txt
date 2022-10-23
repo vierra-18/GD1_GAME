@@ -1,69 +1,19 @@
-SampleTitle
+ampleTitle
 
-Max distance 0
-
-
-
-You got 50 coins collected
-
-You got 53.01796 time elapsed
-
-
-
-You got 250 coins collected
-
-You got 35.57994 time elapsedYou got 250 coins collected
-
-You got 40.9788 time elapsed
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-You got 50 coins collected
-
-You got 31.11456 time elapsedYou got 100 coins collected
-
-You got 44.11732 time elapsedYou got 150 coins collected
-
-You got 81.53611 time elapsedYou got 150 coins collected
-
-You got 100.4748 time elapsed
+Max distance 0You got 0 coins collected
 
 You got 0 coins collected
 
-You got 61.45572 time elapsedYou got 0 coins collected
+You got 54.39952 time elapsedYou got 0 coins collected
 
-You got 79.0372 time elapsedYou got 0 coins collected
+You got 54.39952 time elapsedYou got 0 coins collected
 
-You got 80.59715 time elapsedYou got 0 coins collected
+You got 56.75769 time elapsedYou got 0 coins collected
 
-You got 81.33817 time elapsedYou got 0 coins collected
+You got 56.75769 time elapsedYou got 0 coins collected
 
-You got 82.55907 time elapsedYou got 0 coins collected
+You got 57.85921 time elapsedYou got 0 coins collected
 
-You got 84.65749 time elapsedYou got 0 coins collected
+You got 0 coins collected
 
-You got 86.49755 time elapsedYou got 0 coins collected
-
-You got 101.0196 time elapsedYou got 50 coins collected
-
-You got 123.2167 time elapsedYou got 50 coins collected
-
-You got 126.7786 time elapsedYou got 50 coins collected
-
-You got 135.0365 time elapsedYou got 50 coins collected
-
-You got 143.1592 time elapsed
+You got 106.7369 time elapsed

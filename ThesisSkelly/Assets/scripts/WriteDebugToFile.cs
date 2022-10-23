@@ -28,7 +28,7 @@ public class WriteDebugToFile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		filename = Application.dataPath + "/Logfile.text";
+		filename = Application.streamingAssetsPath + "/Logfile.text";
     }
 	public void Log(string logString, string stackTrace, LogType type)
 	{
