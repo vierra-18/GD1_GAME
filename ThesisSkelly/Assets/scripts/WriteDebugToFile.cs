@@ -37,4 +37,5 @@ public class WriteDebugToFile : MonoBehaviour
 		tw.WriteLine("[" + System.DateTime.Now + "]" + logString); 
 		tw.Close();
 	}
+	
 }
