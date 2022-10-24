@@ -15,8 +15,9 @@ public class AStarLite : MonoBehaviour
 
     AStarNode startNode;
 
-    List<AStarNode> nodesToCheck= new List<AStarNode>();
+    static List<AStarNode> nodesToCheck= new List<AStarNode>();
     List<AStarNode> nodesChecked= new List<AStarNode>();
+    public static int CheckNode = nodesToCheck.Count;
 
     List<Vector3> aiPath = new List<Vector3>();
 

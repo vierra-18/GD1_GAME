@@ -11,7 +11,7 @@ public class Unit : MonoBehaviour
 
     bool reachedTarget;
 
-    void Update()
+    void FixedUpdate()
     {
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
     }

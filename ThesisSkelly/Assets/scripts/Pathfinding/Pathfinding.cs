@@ -61,6 +61,7 @@ public class Pathfinding : MonoBehaviour
 					}
 
 					int newCostToNeighbour = node.gCost + GetDistance(node, neighbour);
+					n = node.gCost + GetDistance(node, neighbour);
 					if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
 					{
 						neighbour.gCost = newCostToNeighbour;
@@ -130,20 +131,20 @@ public class Pathfinding : MonoBehaviour
 		return waypoints.ToArray();
 	}
 
-	public int GetDistance(Node nodeA, Node nodeB)
+	public static int GetDistance(Node nodeA, Node nodeB)
 	{
 		int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
 		int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
 
 		if (dstX > dstY)
 		{
-			n = 14 * dstY + 10 * (dstX - dstY);
+			
 			return 14 * dstY + 10 * (dstX - dstY);
 			
 		}
 		else
 		{
-			n = 14 * dstX + 10 * (dstY - dstX);
+			
 			return 14 * dstX + 10 * (dstY - dstX);
 		}
 

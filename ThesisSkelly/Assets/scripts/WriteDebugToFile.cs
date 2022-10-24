@@ -28,12 +28,13 @@ public class WriteDebugToFile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		filename = Application.streamingAssetsPath + "/Logfile.text";
-    }
+		filename = Application.streamingAssetsPath + "Logfile.text";
+	}
 	public void Log(string logString, string stackTrace, LogType type)
 	{
 		TextWriter tw = new StreamWriter(filename, true);
-		tw.WriteLine(""+logString);
+		tw.WriteLine(""+logString+"");
+		
 		tw.WriteLine("[" + System.DateTime.Now + "]" + logString); 
 		tw.Close();
 	}
