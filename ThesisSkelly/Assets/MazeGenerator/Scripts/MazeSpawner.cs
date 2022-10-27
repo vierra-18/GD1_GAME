@@ -69,23 +69,36 @@ public class MazeSpawner : MonoBehaviour {
 				tmp.transform.parent = transform;
 				if (cell.WallRight)
 				{
-					tmp = Instantiate(Wall, new Vector3(x + CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;// right
-					tmp.transform.parent = transform;
+					if (IsCreateWall() == true || column == Columns - 1)
+                    {
+						tmp = Instantiate(Wall, new Vector3(x + CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;// right
+						tmp.transform.parent = transform;
+					}
+					
 				}
 				if (cell.WallFront)
 				{
-					tmp = Instantiate(Wall, new Vector3(x, 0, z + CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;// front
-					tmp.transform.parent = transform;
+					if (IsCreateWall() == true || row  == Rows -1)
+					{
+						tmp = Instantiate(Wall, new Vector3(x, 0, z + CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;// front
+						tmp.transform.parent = transform;
+					}
 				}
 				if (cell.WallLeft)
 				{
-					tmp = Instantiate(Wall, new Vector3(x - CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 270, 0)) as GameObject;// left
-					tmp.transform.parent = transform;
+					if (IsCreateWall() == true || column == 0)
+					{
+						tmp = Instantiate(Wall, new Vector3(x - CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 270, 0)) as GameObject;// left
+						tmp.transform.parent = transform;
+					}
 				}
 				if (cell.WallBack)
 				{
-					tmp = Instantiate(Wall, new Vector3(x, 0, z - CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;// back
-					tmp.transform.parent = transform;
+					if (IsCreateWall() == true || row == 0)
+					{
+						tmp = Instantiate(Wall, new Vector3(x, 0, z - CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;// back
+						tmp.transform.parent = transform;
+					}
 				}
 				if (cell.IsGoal && GoalPrefab != null)
 				{
@@ -107,5 +120,18 @@ public class MazeSpawner : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	private bool IsCreateWall()
+	{
+		var rnd = Random.Range(0, 10);
+		if(rnd == 0)
+        {
+			return false;
+        }
+        else
+        {
+			return true;
+        }
 	}
 }

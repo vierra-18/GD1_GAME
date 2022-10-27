@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    const float minPathUpdateTime = 0.2f;
+    const float pathUpdateMoveThreshold = 0.5f;
     public Transform target;
     public float speed = 1f;
     Vector3[] path;
@@ -11,10 +13,35 @@ public class Unit : MonoBehaviour
 
     bool reachedTarget;
 
-    void FixedUpdate()
+
+    void Start()
     {
-        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        StartCoroutine(UpdatePath());
     }
+
+
+    IEnumerator UpdatePath()
+    {
+        if (Time.timeSinceLevelLoad < .3f)
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+
+        float sqrMoveThreshold = pathUpdateMoveThreshold * pathUpdateMoveThreshold;
+        Vector3 targetPosOld = target.position;
+
+        while (true)
+        {
+            yield return new WaitForSeconds(minPathUpdateTime);
+            if ((target.position - targetPosOld).sqrMagnitude > sqrMoveThreshold)
+            {
+                PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+                targetPosOld = target.position;
+            }
+        }
+    }
+
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
     {
@@ -40,17 +67,18 @@ public class Unit : MonoBehaviour
                 targetIndex++;
                 if (targetIndex >= path.Length)
                 {
-                   /* targetIndex = 0;
-                    path = new Vector3[0];*/
+                    /* targetIndex = 0;
+                     path = new Vector3[0];*/
                     yield break;
                 }
                 currentWaypoint = path[targetIndex];
             }
 
+            transform.LookAt(currentWaypoint);
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed);
             yield return null;
         }
-       
+
     }
     public void OnDrawGizmos()
     {

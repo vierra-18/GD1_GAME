@@ -49,6 +49,10 @@ public class Pathfinding : MonoBehaviour
 				// once target node is found break out of loop
 				if (node == targetNode)
 				{
+					// DEBUG FCOST THINGS
+					// UnityEngine.Debug.Log("LogFile Distance: " + n);
+					// UnityEngine.Debug.Log("TargetNode fCost:" + targetNode.fCost);
+				
 					pathSuccess = true;
 					break;
 				}
