@@ -38,9 +38,11 @@ public class XTRA_BOXCOLLIDE : MonoBehaviour
             string playResult = "GOT CAUGHT BY SEEKER";
 
             // gets the WriteDebugToFile component script to be able to create the log file
-            SceneManager.LoadScene("You Died");
             gameObject.GetComponent<WriteDebugToFile>().CreateTextFile(distanceTxt, coinTxt, timeTxt, playResult);
             // END OF LOGGING TO TEXT FILE
+
+            SceneManager.LoadScene("You Died"); 
+            Cursor.lockState = CursorLockMode.None;
         }
 
     }

@@ -1,0 +1,36 @@
+GAME RESULTS
+============================================ 
+Max distance: 1124
+You got 0 coins collected 
+You got 42.01979 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 912
+You got 50 coins collected 
+You got 30.11934 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 754
+You got 50 coins collected 
+You got 25.01849 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 770
+You got 50 coins collected 
+You got 25.15779 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 938
+You got 100 coins collected 
+You got 31.59639 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 972
+You got 100 coins collected 
+You got 32.47741 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 880
+You got 150 coins collected 
+You got 31.75856 time elapsed 
+GOT CAUGHT BY SEEKER

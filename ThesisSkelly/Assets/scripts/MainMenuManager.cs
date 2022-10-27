@@ -13,7 +13,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadPathfindingTest()
     {
-        SceneManager.LoadScene("Test Maze_Pathfinding2");
+        SceneManager.LoadScene("Test Maze_PathfindingTest");
     }
     
 
