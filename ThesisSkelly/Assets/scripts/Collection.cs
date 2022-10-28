@@ -16,7 +16,11 @@ public class Collection : MonoBehaviour
     public AudioSource mAudioSource;
     public GameObject Player;
 
-    void OnTriggerEnter(Collider other)
+	private void Awake()
+	{
+		ScoringSystem.score = 0;
+	}
+	void OnTriggerEnter(Collider other)
     {
         if (Player.gameObject.tag.Equals("Player") && other.gameObject.tag.Equals("Coin"))
         {

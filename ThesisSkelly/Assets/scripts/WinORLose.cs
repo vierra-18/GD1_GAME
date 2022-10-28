@@ -33,7 +33,7 @@ public class WinORLose : MonoBehaviour
     }
     void Win() 
     {
-        if (ScoringSystem.score == 800)
+        if (ScoringSystem.score == 500)
          {
             Directory.CreateDirectory(Application.streamingAssetsPath + "/Gameplay_Results/");
 
@@ -49,6 +49,8 @@ public class WinORLose : MonoBehaviour
             timeTxt = "You got " + time + " time elapsed \n";
             CreateTextFile();
             SceneManager.LoadScene("You Win");
+
+            Cursor.lockState = CursorLockMode.None;
         }
     }
     void CreateTextFile()

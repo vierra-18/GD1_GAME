@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -19,5 +20,6 @@ public class Enemy : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         Timer.instance.EndTimer();
+        
     }
 }
