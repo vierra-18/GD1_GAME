@@ -69,3 +69,13 @@ Max distance: 0
 You got 600 coins collected 
 You got 43.67188 time elapsed 
 
+============================================ 
+Max distance: 1208
+You got 0 coins collected 
+You got 47.99938 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 764
+You got 0 coins collected 
+You got 33.29802 time elapsed 
+GOT CAUGHT BY SEEKER
