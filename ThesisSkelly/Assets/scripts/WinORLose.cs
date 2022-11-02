@@ -28,6 +28,8 @@ public class WinORLose : MonoBehaviour
         if (collision.gameObject.tag == "Enemy") 
         {
             SceneManager.LoadScene("You Died");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
     }
@@ -51,6 +53,7 @@ public class WinORLose : MonoBehaviour
             SceneManager.LoadScene("You Win");
 
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
     void CreateTextFile()

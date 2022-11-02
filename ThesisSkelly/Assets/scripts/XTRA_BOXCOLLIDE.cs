@@ -43,6 +43,7 @@ public class XTRA_BOXCOLLIDE : MonoBehaviour
 
             SceneManager.LoadScene("You Died"); 
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
     }
