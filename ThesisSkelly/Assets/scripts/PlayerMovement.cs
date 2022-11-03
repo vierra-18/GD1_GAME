@@ -23,12 +23,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MovePlayer();
+        
     }
 	private void FixedUpdate()
 	{
         MyInput();
-	}
+        MovePlayer();
+    }
 	private void MyInput()
 	{
 		horizontalInput = Input.GetAxisRaw("Horizontal");
