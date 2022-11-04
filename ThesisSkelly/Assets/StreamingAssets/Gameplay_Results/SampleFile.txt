@@ -169,3 +169,48 @@ Max distance: 1456
 You got 50 coins collected 
 You got 22.13951 time elapsed 
 GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 1194
+You got 50 coins collected 
+You got 17.61817 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 1232
+You got 0 coins collected 
+You got 20.2777 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 1262
+You got 100 coins collected 
+You got 20.69275 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 738
+You got 0 coins collected 
+You got 12.92188 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 1008
+You got 0 coins collected 
+You got 16.25792 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 1582
+You got 100 coins collected 
+You got 49.25879 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 878
+You got 50 coins collected 
+You got 22.37998 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 1104
+You got 0 coins collected 
+You got 27.45827 time elapsed 
+GOT CAUGHT BY SEEKER
+============================================ 
+Max distance: 772
+You got 50 coins collected 
+You got 19.33924 time elapsed 
+GOT CAUGHT BY SEEKER
