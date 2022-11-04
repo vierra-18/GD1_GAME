@@ -124,7 +124,7 @@ public class MazeSpawner : MonoBehaviour {
 
 	private bool IsCreateWall()
 	{
-		var rnd = Random.Range(0, 10);
+		var rnd = Random.Range(0, 5);
 		if(rnd == 0)
         {
 			return false;
