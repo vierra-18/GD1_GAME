@@ -21,9 +21,15 @@ public class OnTriggerSound : MonoBehaviour
 	{
         if (other.gameObject.tag.Equals("Player")) 
         {
-            mAudioSource.PlayOneShot(Scream);
+            StartCoroutine(scream());
 
         }
 	}
+    IEnumerator scream()
+    {
+        mAudioSource.Play();
+        yield return new WaitWhile(() => mAudioSource.isPlaying);
+        //do something
+    }
 
 }

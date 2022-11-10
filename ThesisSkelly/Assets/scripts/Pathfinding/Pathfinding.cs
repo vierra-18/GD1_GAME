@@ -7,152 +7,210 @@ using System;
 
 public class Pathfinding : MonoBehaviour
 {
-	PathRequestManager requestManager;
-	Grid_ grid;
-	public static int n;
+    PathRequestManager requestManager;
+    Grid_ grid;
+    public static int n;
 
-	void Awake()
-	{
-		requestManager = GetComponent<PathRequestManager>();
-		grid = GetComponent<Grid_>();
+    int maxCost = 1200;
+    void Awake()
+    {
+        requestManager = GetComponent<PathRequestManager>();
+        grid = GetComponent<Grid_>();
 
 
 
-	}
+    }
 
-	public void StartFindPath(Vector3 startPos, Vector3 targetPos)
-	{
-		StartCoroutine(FindPath(startPos, targetPos));
-	}
+    public void StartFindPath(Vector3 startPos, Vector3 targetPos)
+    {
+        StartCoroutine(FindPath(startPos, targetPos));
+    }
 
-	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
-	{
-		// waypoints for the pathfindging to follow
-		Vector3[] waypoints = new Vector3[0];
-		bool pathSuccess = false;
+    IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
+    {
 
-		Node startNode = grid.NodeFromWorldPoint(startPos);
-		Node targetNode = grid.NodeFromWorldPoint(targetPos);
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
 
-		// check if positions of start and target nodes are walkable or not
-		if (startNode.walkable && targetNode.walkable)
-		{
-			Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
-			HashSet<Node> closedSet = new HashSet<Node>();
-			openSet.Add(startNode);
+        // waypoints for the pathfindging to follow
+        Vector3[] waypoints = new Vector3[0];
+        bool pathSuccess = false;
 
-			while (openSet.Count > 0)
-			{
-				Node node = openSet.RemoveFirst();
-				closedSet.Add(node);
+        Node startNode = grid.NodeFromWorldPoint(startPos);
+        Node targetNode = grid.NodeFromWorldPoint(targetPos);
 
-				// once target node is found break out of loop
-				if (node == targetNode)
-				{
-					// DEBUG FCOST THINGS
-					// UnityEngine.Debug.Log("LogFile Distance: " + n);
-					// UnityEngine.Debug.Log("TargetNode fCost:" + targetNode.fCost);
-				
-					pathSuccess = true;
-					break;
-				}
+        // check if positions of start and target nodes are walkable or not
+        if (startNode.walkable && targetNode.walkable)
+        {
+            Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
+            HashSet<Node> closedSet = new HashSet<Node>();
 
-				foreach (Node neighbour in grid.GetNeighbours(node))
-				{
-					if (!neighbour.walkable || closedSet.Contains(neighbour))
-					{
-						continue;
-					}
+            openSet.Add(startNode);
 
-					int newCostToNeighbour = node.gCost + GetDistance(node, neighbour);
-					n = node.gCost + GetDistance(node, neighbour);
-					if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
-					{
-						neighbour.gCost = newCostToNeighbour;
-						neighbour.hCost = GetDistance(neighbour, targetNode);
-						neighbour.parent = node;
+            while (openSet.Count > 0)
+            {
 
-						if (!openSet.Contains(neighbour))
-							openSet.Add(neighbour);
-						else
-							openSet.UpdateItem(neighbour);
-					}
-				}
-			}
-		}
+                Node node = openSet.RemoveFirst();
+                closedSet.Add(node);
 
-		yield return null;
+                // once target node is found break out of loop
+                if (node == targetNode)
+                {
+                    sw.Stop();
+                    print("Path found: " + sw.ElapsedMilliseconds + " ms");
+                    //DEBUG FCOST THINGS
+                    // UnityEngine.Debug.Log("LogFile Distance: " + n);
+                    // UnityEngine.Debug.Log("node.fCost:" + node.fCost);
 
-		// set path as the waypoints
-		if (pathSuccess)
-		{
-			waypoints = RetracePath(startNode, targetNode);
-			pathSuccess = waypoints.Length > 0;
-		}
+                    pathSuccess = true;
+                    break;
+                }
 
-		// pass to path request manager through finished processing path method
-		requestManager.FinishedProcessingPath(waypoints, pathSuccess);
-	}
+                List<Node> neighbourList = grid.GetNeighbours(node);
+                foreach (Node neighbour in neighbourList)
+                {
 
-	Vector3[] RetracePath(Node startNode, Node endNode)
-	{
-		List<Node> path = new List<Node>();
-		Node currentNode = endNode;
+                    if (!neighbour.walkable || closedSet.Contains(neighbour))
+                    {
+                        continue;
+                    }
 
-		while (currentNode != startNode)
-		{
-			path.Add(currentNode);
-			currentNode = currentNode.parent;
-		}
+                    int newCostToNeighbour = node.gCost + GetDistance(node, neighbour);
+                    n = node.gCost + GetDistance(node, neighbour);
 
-		Vector3[] waypoints = SimplifyPath(path);
-		Array.Reverse(waypoints);
-		return waypoints;
+                    //if gCost of current node is lower than maxCost use same condition
+                    if (node.gCost < maxCost)
+                    {
+                        if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+                        {
+                            // UnityEngine.Debug.Log("im using the first condition");
+                            neighbour.gCost = newCostToNeighbour;
+                            neighbour.hCost = GetDistance(neighbour, targetNode);
+                            neighbour.parent = node;
 
-	}
+                            if (!openSet.Contains(neighbour))
+                                openSet.Add(neighbour);
+                            else
+                                openSet.UpdateItem(neighbour);
+                        }
+                    }
+                    else
+                    {
+                        // UnityEngine.Debug.Log("im using the second condition");
+                        // look for closest neighbour to maxCost
+                        Node closestNeighbour = neighbourList.Aggregate((x, y) => Math.Abs(x.gCost - maxCost) < Math.Abs(y.gCost - maxCost) ? x : y);
 
-	// simplifies the path of nodes so that it only takes waypoints needed to turn
-	Vector3[] SimplifyPath(List<Node> path)
-	{
-		List<Vector3> waypoints = new List<Vector3>();
+                        // use the closest neighbour to maxCost to get the new distance
+                        newCostToNeighbour = node.gCost + GetDistance(node, closestNeighbour);
+                        if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+                        {
+                            // UnityEngine.Debug.Log("im using the second condition");
+                            // UnityEngine.Debug.Log("newCostToNeighbour " + Math.Abs(newCostToNeighbour - maxCost));
+                            // UnityEngine.Debug.Log("neighbour.gCost " + Math.Abs(neighbour.gCost - maxCost));
+                            neighbour.gCost = newCostToNeighbour;
+                            neighbour.hCost = GetDistance(closestNeighbour, targetNode);
+                            neighbour.parent = node;
 
-		// stores direction of last nodes
-		Vector2 directionOld = Vector2.zero;
+                            if (!openSet.Contains(neighbour))
+                                openSet.Add(neighbour);
+                            else
+                                openSet.UpdateItem(neighbour);
+                        }
+                    }
 
-		for (int i = 1; i < path.Count; i++)
-		{
-			/* // directions of the nodes in the grid
+                }
+            }
+        }
+
+        yield return null;
+
+        // set path as the waypoints
+        if (pathSuccess)
+        {
+            waypoints = RetracePath(startNode, targetNode);
+            pathSuccess = waypoints.Length > 0;
+        }
+
+        // pass to path request manager through finished processing path method
+        requestManager.FinishedProcessingPath(waypoints, pathSuccess);
+    }
+
+    Vector3[] RetracePath(Node startNode, Node endNode)
+    {
+        List<Node> path = new List<Node>();
+        Node currentNode = endNode;
+
+        while (currentNode != startNode)
+        {
+            path.Add(currentNode);
+            currentNode = currentNode.parent;
+        }
+
+        Vector3[] waypoints = SimplifyPath(path);
+        Array.Reverse(waypoints);
+        return waypoints;
+
+    }
+
+    // simplifies the path of nodes so that it only takes waypoints needed to turn
+    Vector3[] SimplifyPath(List<Node> path)
+    {
+        List<Vector3> waypoints = new List<Vector3>();
+
+        // stores direction of last nodes
+        Vector2 directionOld = Vector2.zero;
+
+        for (int i = 1; i < path.Count; i++)
+        {
+            /* // directions of the nodes in the grid
 			 Vector2 directionNew = new Vector2(path[i - 1].gridX - path[i].gridX, path[i - 1].gridY - path[i].gridY);*/
 
-			// add node to list of waypoints to change direction
-			/* if (directionNew != directionOld)
+            // add node to list of waypoints to change direction
+            /* if (directionNew != directionOld)
 			 {*/
-			waypoints.Add(path[i].worldPosition);
-			/*     }*/
-			/*    directionOld = directionNew;*/
-		}
+            waypoints.Add(path[i].worldPosition);
+            /*     }*/
+            /*    directionOld = directionNew;*/
+        }
 
-		return waypoints.ToArray();
-	}
+        return waypoints.ToArray();
+    }
 
-	public static int GetDistance(Node nodeA, Node nodeB)
-	{
-		int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
-		int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
+    public static int GetDistance(Node nodeA, Node nodeB)
+    {
+        int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
+        int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
 
-		if (dstX > dstY)
-		{
-			
-			return 14 * dstY + 10 * (dstX - dstY);
-			
-		}
-		else
-		{
-			
-			return 14 * dstX + 10 * (dstY - dstX);
-		}
+        if (dstX > dstY)
+        {
 
-	}
-	
+            return 14 * dstY + 10 * (dstX - dstY);
+
+        }
+        else
+        {
+
+            return 14 * dstX + 10 * (dstY - dstX);
+        }
+
+    }
+
 
 }
+
+
+// if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+// {
+//     // UnityEngine.Debug.Log("im using the first condition");
+//     // UnityEngine.Debug.Log("newCostToNeighbour " + newCostToNeighbour);
+//     // UnityEngine.Debug.Log("neighbour.gCost " + neighbour.gCost);
+//     neighbour.gCost = newCostToNeighbour;
+//     neighbour.hCost = GetDistance(neighbour, targetNode);
+//     neighbour.parent = node;
+
+//     if (!openSet.Contains(neighbour))
+//         openSet.Add(neighbour);
+//     else
+//         openSet.UpdateItem(neighbour);
+// }
+
