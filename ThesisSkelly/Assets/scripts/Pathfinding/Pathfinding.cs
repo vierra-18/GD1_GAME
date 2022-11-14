@@ -11,7 +11,8 @@ public class Pathfinding : MonoBehaviour
     Grid_ grid;
     public static int n;
 
-    int maxCost = 1200;
+    //maxCost variable
+    int maxCost = 1097;
     void Awake()
     {
         requestManager = GetComponent<PathRequestManager>();
